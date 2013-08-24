@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+
+{% block layout %}
+
+
+    {% block content_wrapper %}
+    <div class="container-fluid page">
+        <div class="page_inner">
+            {% block header %}
+            <div class="page-header action">
+                <h1>{% block headertext %}{{ site_name }} - {{ site_tagline }}{% endblock %}</h1>
+            </div>
+            {% endblock %}
+            <div class="content">
+                {% block subheader %}{% endblock subheader %}
+                <div id="content_inner">{% block content %}{% endblock %}</div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% include "partials/footer.html" %}
+{% endblock %}

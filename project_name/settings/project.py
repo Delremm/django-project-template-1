@@ -5,11 +5,11 @@ from .defaults import *
 
 # Admins receive 500 errors, managers receive 404 errors.
 ADMINS = (
-    ('{{ project_name }}', 'sysadmin@edoburu.nl'),
+    ('{{ project_name }}', 'fhpt@yandex.ru'),
 )
 MANAGERS = ADMINS
 
-DEFAULT_FROM_EMAIL = 'sysadmin@edoburu.nl'
+DEFAULT_FROM_EMAIL = 'sysadmin@default.com'
 EMAIL_SUBJECT_PREFIX = '[Django][{{ project_name }}] '
 
 # Database to use
@@ -68,3 +68,12 @@ FILEBROWSER_EXTENSIONS = {
 }
 FILEBROWSER_EXCLUDE = ('cache',)  # sorl.thumbnail generated files
 FILEBROWSER_MAX_UPLOAD_SIZE = 100 * 1024 * 1024  # in bytes
+
+#site name used in <title>
+SITE_VERBOSE_NAME = '{{ project_name }}'
+SITE_TAGLINE = '{{ project_name }}'
+
+USE_LESS = False
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+)

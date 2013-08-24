@@ -1,0 +1,4 @@
+# Debugging
+-r base.txt
+django-debugtools >= 1.1.0
+bpython >= 0.11
