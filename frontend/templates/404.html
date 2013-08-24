@@ -1,17 +1,14 @@
-{% extends "base.html" %}
+{% extends "error.html" %}
+{% load i18n %}
 
-{% block bodyid %}page404{% endblock %}
-{% block bodyclass %}{% endblock %}
-{% block headtitle %}Pagina niet gevonden!{% endblock %}
+{% block title %}
+{% trans 'Page not found' %} | {{ block.super }}
+{% endblock %}
 
-{% block main %}
-          <h2 class="pagetitle">Pagina niet gevonden</h2>
-          <div id="content" class="clearfix">
-            <p>
-              De pagina die u opgevraagd heeft bestaat niet.
-            </p>
-            <p>
-              Terug naar de <a href="/">start pagina</a>.
-            </p>
-          </div><!-- /content -->
+{% block error_heading %}
+{% trans "Page not found!" %}
+{% endblock %}
+
+{% block error_message %}
+<p>{% trans "We're sorry but the page you are looking for can't be found." %}</p>
 {% endblock %}

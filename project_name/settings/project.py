@@ -15,7 +15,7 @@ EMAIL_SUBJECT_PREFIX = '[Django][{{ project_name }}] '
 # Database to use
 DATABASES = {
     'default': {
-        'ENGINE':   'django.db.backends.postgresql_psycopg2',
+        'ENGINE':   'django.db.backends.mysql',
         'NAME':     '{{ project_name }}',
         'USER':     '{{ project_name }}',
         'PASSWORD': '',
@@ -77,3 +77,6 @@ USE_LESS = False
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
+
+#django-filebrowser requires
+ADMIN_MEDIA_PREFIX = '%s%s' % (STATIC_URL, 'admin/')

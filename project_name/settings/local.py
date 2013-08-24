@@ -7,6 +7,16 @@ from .project import INSTALLED_APPS, MIDDLEWARE_CLASSES
 import logging, sys
 logging.basicConfig(level=logging.DEBUG, stream=sys.stderr)
 
+# Database to use
+DATABASES = {
+    'default': {
+        'ENGINE':   'django.db.backends.sqlite3',
+        'NAME':     'db.sqlite3',
+        'USER':     '',
+        'PASSWORD': '',
+    },
+}
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Debugging assistance

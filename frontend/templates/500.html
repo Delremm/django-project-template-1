@@ -1,27 +1,15 @@
-{% load static %}{% get_static_prefix as STATIC_URL %}<!DOCTYPE html>
+{% extends "error.html" %}
+{% load i18n %}
 
-<html xml:lang="{{ LANGUAGE_CODE|default:"nl" }}" lang="{{ LANGUAGE_CODE|default:"nl" }}">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="generator" content="Powered by Django" />
-    <title>Interne fout!</title>
-    <link href="{{ STATIC_URL }}frontend/css/screen.css" rel="stylesheet" type="text/css" />
-    {% block scripts %}{% endblock %}
-  </head>
+{% block title %}
+{% trans 'Server error!' %}
+{% endblock %}
 
-  <body id="theme" class="page500">
-    <div id="container">
+{% block error_heading %}
+{% trans "Server error!" %}
+{% endblock %}
 
-      <h2 class="pagetitle">Interne fout</h2>
-      <div id="content" class="clearfix">
-        <p>
-          Er is een fout opgetreden. Probeert u het later a.u.b. opnieuw.
-        </p>
-        <p>
-          Terug naar de <a href="/">start pagina</a>.
-        </p>
-      </div><!-- /content -->
-
-    </div>
-  </body>
-</html>
+{% block error_message %}
+<p>{% trans "We're sorry but something went terribly wrong." %}</p>
+<p>{% trans "This incident has been logged and will be addressed by an engineer as soon as possible." %}</p>
+{% endblock %}
