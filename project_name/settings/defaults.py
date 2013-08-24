@@ -19,6 +19,9 @@ USE_L10N = True
 USE_TZ = True
 TIME_ZONE = 'Asia/Yekaterinburg'
 LANGUAGE_CODE = 'ru-RU'
+LANGUAGES = [
+    ('ru', 'Russian'),
+]
 
 # Path autodetection
 SRC_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
@@ -71,18 +74,20 @@ STATICFILES_FINDERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.doc.XViewMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
+    'django.core.context_processors.static',
     'django.core.context_processors.request',
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
@@ -113,3 +118,6 @@ COMPRESS_JS_FILTERS = (
 )
 
 COMPRESS_ENABLED = False
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+)

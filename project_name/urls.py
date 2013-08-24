@@ -1,7 +1,6 @@
 from django.conf.urls import *
 from django.conf import settings
 from django.contrib import admin
-from filebrowser.sites import site as fb_site
 from frontend.views import TextFileView, Http500View
 
 admin.autodiscover()
@@ -13,8 +12,7 @@ sitemaps = {
 urlpatterns = patterns('',
     # Django admin
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^admin/filebrowser/', include(fb_site.urls)),
-    url(r'^admin/util/tools/', include('admin_tools.urls')),
+    url(r'^', include('cms.urls')),
 
     # Test pages
     url(r'^500test/$', view=Http500View.as_view()),
@@ -33,4 +31,7 @@ urlpatterns = patterns('',
 if settings.DEBUG:
     urlpatterns.insert(0,
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True})
+    )
+    urlpatterns.insert(0,
+        url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True})
     )

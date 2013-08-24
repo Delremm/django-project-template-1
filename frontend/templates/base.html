@@ -1,4 +1,18 @@
+{% load cms_tags sekizai_tags %}
+<html>
+  <head>
+      {% render_block "css" %}
+  </head>
+  <body>
+      {% cms_toolbar %}
+      {% placeholder base_content %}
+      {% block base_content %}{% endblock %}
+      {% render_block "js" %}
+  </body>
+</html>
+
 {% load analytics i18n compress %}
+{% load cms_tags sekizai_tags %}
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="{{ lang|default:"ru" }}">
@@ -26,6 +40,8 @@
                         <link rel="stylesheet" type="text/css" href="{% static "frontend/css/responsive.css" %}" />
                     {% endif %}
                 {% endcompress %}
+                {# django-cms stypes #}
+                {% render_block "css" %}
             {% endblock %}
         {% endblock %}
 
@@ -37,7 +53,9 @@
 
     <body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
         {# Main content goes in this 'layout' block #}
-        {% block layout %}{% endblock %}
+        {% cms_toolbar %}
+        {% block layout %}
+        {% endblock %}
 
         {% block tracking %}
             {# Default to using Google analytics #}
@@ -63,6 +81,7 @@
             {% compress js %}
             <script src="{% static "frontend/js/scripts.js" %}" type="text/javascript" charset="utf-8"></script>
             {% endcompress %}
+            {% render_block "js" %}
         {% endblock %}
 
         {# Additional JS scripts #}

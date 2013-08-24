@@ -31,52 +31,50 @@ INSTALLED_APPS += (
     'frontend',
 
     # Support libs
-    'crispy_forms',
-    'filebrowser',
     'google_analytics',
-    'sorl.thumbnail',
+    'crispy_forms',
+    #django-cms
+    'menus',
+    'sekizai',
+    'filer',
+    'mptt',
+    'easy_thumbnails',
+    'cms',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_image',
+    'cmsplugin_filer_teaser',
+    'cmsplugin_filer_video',
 
-    # and enable the admin
-    'fluent_dashboard',
-    'admin_tools',
-    'admin_tools.theming',
-    'admin_tools.menu',
-    'admin_tools.dashboard',
     'django.contrib.admin',
+)
+
+MIDDLEWARE_CLASSES += (
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     'frontend.context_processors.site',
+    'cms.context_processors.media',
+    'sekizai.context_processors.sekizai',
 )
 
-FORMAT_MODULE_PATH = '{{ project_name }}.settings.locale'  # Consistent date formatting
+# Consistent date formatting
+FORMAT_MODULE_PATH = '{{ project_name }}.settings.locale'  
 
 # App specific settings
-ADMIN_TOOLS_INDEX_DASHBOARD = 'fluent_dashboard.dashboard.FluentIndexDashboard'
-ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'fluent_dashboard.dashboard.FluentAppIndexDashboard'
-ADMIN_TOOLS_MENU = 'fluent_dashboard.menu.FluentMenu'
 
-FLUENT_DASHBOARD_APP_ICONS = {}
-FLUENT_DASHBOARD_DEFAULT_MODULE = 'ModelList'
-
-FILEBROWSER_DIRECTORY = ''
-FILEBROWSER_EXTENSIONS = {
-    'Folder': [''],
-    'Image': ['.jpg', '.jpeg', '.png', '.gif'],
-    'Document': ['.pdf', '.doc', '.xls', '.csv', '.docx', '.xlsx'],
-    'Video': ['.swf', '.mp4', '.flv', '.f4v', '.mov', '.3gp'],
-}
-FILEBROWSER_EXCLUDE = ('cache',)  # sorl.thumbnail generated files
-FILEBROWSER_MAX_UPLOAD_SIZE = 100 * 1024 * 1024  # in bytes
 
 #site name used in <title>
 SITE_VERBOSE_NAME = '{{ project_name }}'
 SITE_TAGLINE = '{{ project_name }}'
 
 USE_LESS = False
-COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
-)
 
-#django-filebrowser requires
-ADMIN_MEDIA_PREFIX = '%s%s' % (STATIC_URL, 'admin/')
+#django-cms
+CMS_TEMPLATES = (
+    ('cms_template.html', 'Default cms_template'),
+)
