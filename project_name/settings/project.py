@@ -40,6 +40,7 @@ INSTALLED_APPS += (
     'mptt',
     'easy_thumbnails',
     'cms',
+    'cms.plugins.text',
     'cmsplugin_filer_file',
     'cmsplugin_filer_folder',
     'cmsplugin_filer_image',
@@ -63,7 +64,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 )
 
 # Consistent date formatting
-FORMAT_MODULE_PATH = '{{ project_name }}.settings.locale'  
+FORMAT_MODULE_PATH = '{{ project_name }}.settings.locale'
 
 # App specific settings
 
@@ -77,4 +78,14 @@ USE_LESS = False
 #django-cms
 CMS_TEMPLATES = (
     ('cms_template.html', 'Default cms_template'),
+)
+
+# django-filer installation:
+# https://django-filer.readthedocs.org/en/latest/installation.html
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    #'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
 )

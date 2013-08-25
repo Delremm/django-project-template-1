@@ -1,16 +1,3 @@
-{% load cms_tags sekizai_tags %}
-<html>
-  <head>
-      {% render_block "css" %}
-  </head>
-  <body>
-      {% cms_toolbar %}
-      {% placeholder base_content %}
-      {% block base_content %}{% endblock %}
-      {% render_block "js" %}
-  </body>
-</html>
-
 {% load analytics i18n compress %}
 {% load cms_tags sekizai_tags %}
 {% load staticfiles %}
@@ -34,14 +21,11 @@
                 {% compress css %}
                     {% if use_less %}
                         <link rel="stylesheet" type="text/less" href="{% static "frontend/less/styles.less" %}" />
-                        <link rel="stylesheet" type="text/less" href="{% static "frontend/less/responsive.less" %}" />
                     {% else %}
                         <link rel="stylesheet" type="text/css" href="{% static "frontend/css/styles.css" %}" />
-                        <link rel="stylesheet" type="text/css" href="{% static "frontend/css/responsive.css" %}" />
                     {% endif %}
                 {% endcompress %}
                 {# django-cms stypes #}
-                {% render_block "css" %}
             {% endblock %}
         {% endblock %}
 
@@ -76,12 +60,10 @@
         {% block scripts %}
             <!-- Twitter Bootstrap CDN-->
             <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-            <script>$.fn.modal || document.write('<script src="{% static "frontend/js/bootstrap/bootstrap.min.js">\x3C/script>')</script>
-            <script type="text/javascript" src="{% static "project/js/bootstrap/bootstrap.min.js" %}"></script>
+            <script>$.fn.modal || document.write('<script src="{% static "frontend/js/bootstrap/bootstrap.min.js"><\/script>')</script>
             {% compress js %}
             <script src="{% static "frontend/js/scripts.js" %}" type="text/javascript" charset="utf-8"></script>
             {% endcompress %}
-            {% render_block "js" %}
         {% endblock %}
 
         {# Additional JS scripts #}
