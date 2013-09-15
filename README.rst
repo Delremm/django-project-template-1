@@ -53,7 +53,7 @@ Create a Django project::
 
     mkdir my-website.com
     cd my-website.com
-    django-admin.py startproject mywebsite . -e py,rst,example,gitignore --template=https://github.com/edoburu/django-project-template/archive/master.zip
+    django-admin.py startproject mywebsite . -e py,rst,example,gitignore --template=https://github.com/Delremm/django-project-template-1/archive/master.zip
 
 Alternatively, you can place the files in a ``src`` folder too::
 

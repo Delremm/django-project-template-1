@@ -96,11 +96,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'KEY_PREFIX': '{{ project_name }}.local',
-        'LOCATION': '127.0.0.1:11211',
-        'TIMEOUT': 24*3600
-    },
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
 }
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
